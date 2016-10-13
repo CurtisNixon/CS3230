@@ -1,4 +1,9 @@
+#java compiled classes
 *.class
+
+#intelliJ stuff
+.idea
+*.iml
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
