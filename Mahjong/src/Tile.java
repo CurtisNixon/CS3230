@@ -11,7 +11,7 @@ public class Tile extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(90,90);
+        return new Dimension(85,85);
     }
 
     public void paintComponent(Graphics g2){
