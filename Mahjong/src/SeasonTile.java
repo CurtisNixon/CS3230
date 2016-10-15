@@ -13,9 +13,6 @@ public class SeasonTile extends PictureTile {
     }
 
     // valid seasons are Spring Summer Fall Winter
-    //TODO make sure images are located in the right place for testing
-
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -32,10 +29,10 @@ public class SeasonTile extends PictureTile {
         }else{
             icon = new ImageIcon();
         }
-        //TODO resize the images
-        Image image = icon.getImage();
-        image.getScaledInstance(10,10,Image.SCALE_DEFAULT);
-        g.drawImage(image, 20, 0, null);
+        //get the icon as an image and resize it
+        Image image = icon.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+        Image newImage = new ImageIcon(image).getImage();
+        g.drawImage(newImage, 27, 3, null);
         setToolTipText(super.toString());
 
     }
