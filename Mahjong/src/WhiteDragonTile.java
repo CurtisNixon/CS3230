@@ -28,17 +28,15 @@ public class WhiteDragonTile extends Tile {
         g.fill3DRect(44,6,9,8,false);
         g.fill3DRect(60,6,9,8,false);
         //right
-        //TODO fix this side
-        g.fill3DRect(68,13,7,8,false);
-        g.fill3DRect(68,28,7,8,false);
-        g.fill3DRect(68,43,7,8,false);
+        g.fill3DRect(68,14,7,9,false);
+        g.fill3DRect(68,30,7,9,false);
+        g.fill3DRect(68,45,7,8,false);
         //bottom
-        g.fill3DRect(29,45,9,8,false);
-        g.fill3DRect(44,45,9,8,false);
-        g.fill3DRect(60,45,9,8,false);
+        g.fill3DRect(37,45,9,8,false);
+        g.fill3DRect(54,45,9,8,false);
         //left
-        //TODO
-
+        g.fill3DRect(29,20,8,9,false);
+        g.fill3DRect(29,37,8,9,false);
 
     }
     public static void main(String[] args)
