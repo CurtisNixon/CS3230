@@ -1,6 +1,3 @@
-/**
- * Created by cnixon on 10/13/16.
- */
 import	java.awt.*;
 import	java.awt.event.*;
 import	java.util.*;
@@ -11,7 +8,7 @@ public class Lab5 extends JFrame
 {
     private	GridBagLayout		layout = new GridBagLayout();
     private	GridBagConstraints	constraints = new GridBagConstraints();
-    private	JPanel			tilePanel = new JPanel();
+    private	JPanel			tilePanel = new JPanel(layout);
 
 
     public Lab5()
@@ -92,4 +89,3 @@ public class Lab5 extends JFrame
         new Lab5();
     }
 }
-
