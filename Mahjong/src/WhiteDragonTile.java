@@ -37,6 +37,7 @@ public class WhiteDragonTile extends Tile {
         //left
         g.fill3DRect(29,20,8,9,false);
         g.fill3DRect(29,37,8,9,false);
+        setToolTipText(toString());
 
     }
     public static void main(String[] args)
