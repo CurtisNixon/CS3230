@@ -15,7 +15,7 @@ public class BambooTile extends RankTile {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         setToolTipText(toString());
-        Color green = new Color(0,221,0);
+        Color green = new Color(0,150,0);
         Color red = new Color(173,0,0);
         Color blue = new Color(0,0,142);
         switch(rank){
@@ -102,9 +102,26 @@ public class BambooTile extends RankTile {
         }
     }
 
-    private void paintBambooStick(int xPosition, int yPosition, Graphics g){
-        g.draw3DRect(xPosition, yPosition, 8, 15,false);
-        //TODO draw stick instead of rectangle
+    private void paintBambooStick(int x, int y, Graphics g){
+        g.drawLine(x+2,y,x+6,y);
+        g.drawLine(x+1,y+1,x+4,y+1);g.drawLine(x+6,y+1,x+7,y+1);
+        g.drawLine(x,y+2,x+4,y+2);g.drawLine(x+6,y+2,x+8,y+2);
+        g.drawLine(x,y+3,x+4,y+3);g.drawLine(x+6,y+3,x+8,y+3);
+
+        g.drawLine(x+2,y+4,x+4,y+4);g.drawLine(x+6,y+4,x+6,y+4);
+        g.drawLine(x+2,y+5,x+4,y+5);g.drawLine(x+6,y+5,x+6,y+5);
+        g.drawLine(x+2,y+6,x+4,y+6);g.drawLine(x+6,y+6,x+6,y+6);
+        g.drawLine(x+1,y+7,x+7,y+7);
+        g.drawLine(x,y+8,x+8,y+8);
+        g.drawLine(x,y+9,x+8,y+9);
+
+        g.drawLine(x+2,y+10,x+4,y+10);g.drawLine(x+6,y+10,x+6,y+10);
+        g.drawLine(x+2,y+11,x+4,y+11);g.drawLine(x+6,y+11,x+6,y+11);
+        g.drawLine(x+2,y+12,x+4,y+12);g.drawLine(x+6,y+12,x+6,y+12);
+        g.drawLine(x+1,y+13,x+4,y+13);g.drawLine(x+6,y+13,x+7,y+13);
+        g.drawLine(x,y+14,x+4,y+14);g.drawLine(x+6,y+14,x+8,y+14);
+        g.drawLine(x,y+15,x+8,y+15);
+
     }
 
     public static void main(String[] args)
