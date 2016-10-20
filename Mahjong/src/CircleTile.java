@@ -21,7 +21,32 @@ public class CircleTile extends RankTile {
         Color blue = new Color(0,0,142);
         switch(rank){
             case 1:
-                //Todo
+
+                g.setColor(green);
+                g.fillOval(30,6,44,44);
+                g.setColor(Color.black);
+                g.drawOval(30,6,44,44);
+                g.setColor(red);
+                drawCircle(47,21,12,red,g);
+                g.setColor(Color.WHITE);
+                g.drawOval(47,21,12,12);
+                //left
+                g.fillOval(39,25,4,4);
+                g.fillOval(41,20,4,4);
+                g.fillOval(45,16,4,4);
+                //top
+                g.fillOval(57,15,4,4);
+                g.fillOval(51,14,4,4);
+                g.fillOval(61,19,4,4);
+                //right
+                g.fillOval(63,25,4,4);
+                g.fillOval(61,31,4,4);
+                g.fillOval(57,36,4,4);
+                //bottom
+                g.fillOval(51,39,4,4);
+                g.fillOval(45,37,4,4);
+                g.fillOval(41,32,4,4);
+
                 break;
             case 2:
                 g.setColor(green);
