@@ -8,70 +8,68 @@ public class Tile extends JPanel {
     public boolean matches(Tile other){
         return this.getClass() == other.getClass();
     }
+    public Tile(){
+        setPreferredSize(new Dimension(85,85));
+    }
+    static Color green = new Color(50, 242, 50);
+    static Color darkGreen = new Color(3, 142, 1);
+    static Color ivory = new Color(237, 230, 158);
+    static Color white = new Color(255, 255, 255);
+    static Color black = new Color(0, 0, 0);
+    static int[] xLeftGreen = new int[]{8,16,16,8};
+    static int[] yLeftGreen = new int[]{16,8,64,72};
+    static GradientPaint leftGreen = new GradientPaint(8,48,green,16,8,darkGreen);
+    static int[] xBottomGreen = new int[] {8,16,72,64};
+    static int[] yBottomGreen = new int[] {72,64,64,72};
+    static GradientPaint bottomGreen = new GradientPaint(8,48,green,48,40,darkGreen);
+    static int[] xLeftWhite = new int[] {16,24,24,16};
+    static int[] yLeftWhite = new int[] {8,0,56,64};
+    static GradientPaint leftWhite = new GradientPaint(0,0,ivory,16,40,white);
+    static int[] xBottomWhite = new int[] {16,24,80,72};
+    static int[] yBottomWhite = new int[] {64,56,56,64};
+    static GradientPaint bottomWhite = new GradientPaint(16,40,white,56,40,ivory);
+    static int[] xTile = new int[] {24,80,80,24};
+    static int[] yTile = new int[] {0,0,56,56};
+    static GradientPaint tileWhite = new GradientPaint(24,32,white,56,0,ivory);
 
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(85,85);
+    public static void paintTile(Graphics2D g){
+
+        //left side green
+        g.setPaint(leftGreen);
+        g.fillPolygon(xLeftGreen, yLeftGreen, 4);
+        g.setColor(black);
+        g.drawPolygon(xLeftGreen, yLeftGreen, 4);
+
+        //bottom side green
+        g.setPaint(bottomGreen);
+        g.fillPolygon(xBottomGreen, yBottomGreen, 4);
+        g.setColor(black);
+        g.drawPolygon(xBottomGreen, yBottomGreen, 4);
+
+        //left side white
+        g.setPaint(leftWhite);
+        g.fillPolygon(xLeftWhite, yLeftWhite, 4);
+        g.setColor(black);
+        g.drawPolygon(xLeftWhite, yLeftWhite, 4);
+
+        //bottom side white
+        g.setPaint(bottomWhite);
+        g.fillPolygon(xBottomWhite, yBottomWhite, 4);
+        g.setColor(black);
+        g.drawPolygon(xBottomWhite, yBottomWhite, 4);
+
+        //blank top of tile
+        g.setPaint(tileWhite);
+        g.fillPolygon(xTile, yTile, 4);
+        g.setColor(black);
+        g.drawPolygon(xTile, yTile, 4);
     }
 
     public void paintComponent(Graphics g2){
 
         Graphics2D g = (Graphics2D)g2;
         super.paintComponent(g);
-
-        //set colors
-        Color green = new Color(50,242,50);
-        Color darkGreen = new Color(3,142,1);
-        Color ivory = new Color(237,230,158);
-        Color white = new Color(255,255,255);
-        Color black = new Color(0,0,0);
-        GradientPaint greenGradient;
-        GradientPaint ivoryGradient;
-
-        //left side green
-        int[] xPoints = new int[]{8,16,16,8};
-        int[] yPoints = new int[]{16,8,64,72};
-        greenGradient = new GradientPaint(8,48,green,16,8,darkGreen);
-        g.setPaint(greenGradient);
-        g.fillPolygon(xPoints, yPoints, 4);
-        g.setColor(black);
-        g.drawPolygon(xPoints, yPoints, 4);
-
-        //bottom side green
-        xPoints = new int[] {8,16,72,64};
-        yPoints = new int[] {72,64,64,72};
-        greenGradient = new GradientPaint(8,48,green,48,40,darkGreen);
-        g.setPaint(greenGradient);
-        g.fillPolygon(xPoints, yPoints, 4);
-        g.setColor(black);
-        g.drawPolygon(xPoints, yPoints, 4);
-
-        //left side white
-        xPoints = new int[] {16,24,24,16};
-        yPoints = new int[] {8,0,56,64};
-        ivoryGradient =  new GradientPaint(0,0,ivory,16,40,white);
-        g.setPaint(ivoryGradient);
-        g.fillPolygon(xPoints, yPoints, 4);
-        g.setColor(black);
-        g.drawPolygon(xPoints, yPoints, 4);
-
-        //bottom side white
-        xPoints = new int[] {16,24,80,72};
-        yPoints = new int[] {64,56,56,64};
-        ivoryGradient =  new GradientPaint(16,40,white,56,40,ivory);
-        g.setPaint(ivoryGradient);
-        g.fillPolygon(xPoints, yPoints, 4);
-        g.setColor(black);
-        g.drawPolygon(xPoints, yPoints, 4);
-
-        //blank top of tile
-        xPoints = new int[] {24,80,80,24};
-        yPoints = new int[] {0,0,56,56};
-        ivoryGradient =  new GradientPaint(24,32,white,56,0,ivory);
-        g.setPaint(ivoryGradient);
-        g.fillPolygon(xPoints, yPoints, 4);
-        g.setColor(black);
-        g.drawPolygon(xPoints, yPoints, 4);
+        paintTile(g);
 
     }
 
