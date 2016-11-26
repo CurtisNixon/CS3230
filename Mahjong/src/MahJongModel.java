@@ -11,7 +11,6 @@ public class MahJongModel extends MahJongBoard {
     public Tile rightTileLeft;
     public Tile rightTileRight;
     public Tile topTile;
-
     public MahJongModel() {
 
         //add character tiles to array list
@@ -145,8 +144,35 @@ public class MahJongModel extends MahJongBoard {
         }
 
         //layer 3
+        //row 1 tiles 121-124
+        for(int i = 0; i < 4; i++){
+            tiles[2][i+4][2] = tileList.remove(0);
+        }
+        //row 2 tiles 125-128
+        for(int i = 0; i < 4; i++){
+            tiles[3][i+4][2] = tileList.remove(0);
+        }
+        //row 3 tiles 129-132
+        for(int i = 0; i < 4; i++){
+            tiles[4][i+4][2] = tileList.remove(0);
+        }
+        //row 4 tiles 133-136
+        for(int i = 0; i < 4; i++){
+            tiles[5][i+4][2] = tileList.remove(0);
+        }
+
         //layer 4
-        //layer 5
+        //row 1 tiles 137 and 138
+        tiles[3][4][3] = tileList.remove(0);
+        tiles[3][5][3] = tileList.remove(0);
+        //row 2 tiles 139 and 140
+        tiles[4][4][3] = tileList.remove(0);
+        tiles[4][5][3] = tileList.remove(0);
+        //special case tiles
+        leftMostTile = tileList.remove(0);
+        rightTileLeft = tileList.remove(0);
+        rightTileRight = tileList.remove(0);
+        topTile = tileList.remove(0);
 
     }
 
@@ -170,5 +196,7 @@ public class MahJongModel extends MahJongBoard {
             }
             System.out.println("layer: " + k);
         }
+        System.out.println("------------");
+        System.out.println(model.tileList.toString());
     }
 }
