@@ -11,42 +11,12 @@ public class MahJongBoard extends JPanel {
     private static int yLength = 56;
 
     public MahJongBoard(){
-        //Image image = new
         setLayout(null);
+        //TODO set background image
+        //Image image = new
         //setBackground(Color.black);
         setLocation(0,0);
         setSize(1100,700);
-//        CharacterTile ct =new CharacterTile('4');
-//        add(ct);
-//        SeasonTile st = new SeasonTile("Winter");
-//        add(st);
-//        ct.setBounds(50,50,xBounds,yBounds);
-//        st.setBounds(50+xLength,50,xBounds,yBounds);
-//        Tile t = new Tile();
-//        add(t);
-//        t.setBounds(50+(2*xLength),50,xBounds,yBounds);
-//        Tile t2 = new Tile();
-//        add(t2);
-//        t2.setBounds(50+(3*xLength),50,xBounds,yBounds);
-//
-//        CircleTile c = new CircleTile(1);
-//        add(c);
-//        c.setBounds(50+(4*xLength),50,xBounds,yBounds);
-//        Bamboo1Tile b1 = new Bamboo1Tile();
-//        add(b1);
-//        b1.setBounds(50+(5*xLength),50,xBounds,yBounds);
-//
-//        BambooTile b = new BambooTile(4);
-//        add(b);
-//        b.setBounds(50+(6*xLength),50,xBounds,yBounds);
-//
-//        BambooTile b7 = new BambooTile(7);
-//        add(b7);
-//        b7.setBounds(50+(7*xLength),50,xBounds,yBounds);
-//
-//        CharacterTile c2 = new CharacterTile('N');
-//        add(c2);
-//        c2.setBounds(50+(8*xLength),50,xBounds,yBounds);
 
         MahJongModel  model = new MahJongModel();
 
@@ -69,6 +39,7 @@ public class MahJongBoard extends JPanel {
                 }
             }
         }
+        //TODO set click handlers and check if a Tile is clickable
 
         setVisible(true);
     }
