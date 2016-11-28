@@ -4,7 +4,7 @@ import java.util.Random;
 /**
  * Created by Curtis on 11/25/2016.
  */
-public class MahJongModel extends MahJongBoard {
+public class MahJongModel{
     public ArrayList<Tile> tileList = new ArrayList<Tile>();
     public Tile[][][] tiles = new Tile[9][12][5];
     public Tile leftMostTile;
@@ -163,11 +163,11 @@ public class MahJongModel extends MahJongBoard {
 
         //layer 4
         //row 1 tiles 137 and 138
-        tiles[3][4][3] = tileList.remove(0);
         tiles[3][5][3] = tileList.remove(0);
+        tiles[3][6][3] = tileList.remove(0);
         //row 2 tiles 139 and 140
-        tiles[4][4][3] = tileList.remove(0);
         tiles[4][5][3] = tileList.remove(0);
+        tiles[4][6][3] = tileList.remove(0);
         //special case tiles
         leftMostTile = tileList.remove(0);
         rightTileLeft = tileList.remove(0);
@@ -176,7 +176,7 @@ public class MahJongModel extends MahJongBoard {
 
     }
 
-    public void positionTile(){}
+    //public void positionTile(){}
 
     public static void main(String[] args){
         MahJongModel model = new MahJongModel();
