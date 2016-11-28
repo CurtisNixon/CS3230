@@ -21,83 +21,83 @@ public class BambooTile extends RankTile {
         switch(rank){
             case 2:
                 g.setColor(blue);
-                paintBambooStick(48,12,g);
+                paintBambooStick(40,12,g);
                 g.setColor(green);
-                paintBambooStick(48,29,g);
+                paintBambooStick(40,29,g);
                 break;
             case 3:
                 g.setColor(blue);
-                paintBambooStick(48,12,g);
+                paintBambooStick(40,12,g);
                 g.setColor(green);
-                paintBambooStick(38,29,g);
-                paintBambooStick(58,29,g);
+                paintBambooStick(30,29,g);
+                paintBambooStick(50,29,g);
                 break;
             case 4:
                 g.setColor(blue);
-                paintBambooStick(36,12,g);
-                paintBambooStick(60,29,g);
+                paintBambooStick(28,12,g);
+                paintBambooStick(52,29,g);
                 g.setColor(green);
-                paintBambooStick(36,29,g);
-                paintBambooStick(60,12,g);
+                paintBambooStick(28,29,g);
+                paintBambooStick(52,12,g);
                 break;
             case 5:
                 g.setColor(red);
-                paintBambooStick(48,20,g);
+                paintBambooStick(40,20,g);
                 g.setColor(green);
-                paintBambooStick(36,12,g);
-                paintBambooStick(60,29,g);
+                paintBambooStick(28,12,g);
+                paintBambooStick(52,29,g);
                 g.setColor(blue);
-                paintBambooStick(36,29,g);
-                paintBambooStick(60,12,g);
+                paintBambooStick(30,29,g);
+                paintBambooStick(52,12,g);
                 break;
             case 6:
                 g.setColor(green);
-                paintBambooStick(31,12,g);
-                paintBambooStick(65,12,g);
-                paintBambooStick(48,12,g);
+                paintBambooStick(23,12,g);
+                paintBambooStick(57,12,g);
+                paintBambooStick(40,12,g);
                 g.setColor(blue);
-                paintBambooStick(31, 29, g);
-                paintBambooStick(65,29,g);
-                paintBambooStick(48,29,g);
+                paintBambooStick(23, 29, g);
+                paintBambooStick(57,29,g);
+                paintBambooStick(40,29,g);
                 break;
             case 7:
                 g.setColor(green);
-                paintBambooStick(31,21,g);
-                paintBambooStick(31,39,g);
-                paintBambooStick(65,21,g);
-                paintBambooStick(65,39,g);
+                paintBambooStick(23,21,g);
+                paintBambooStick(23,39,g);
+                paintBambooStick(57,21,g);
+                paintBambooStick(57,39,g);
                 g.setColor(blue);
-                paintBambooStick(48,21,g);
-                paintBambooStick(48,39,g);
+                paintBambooStick(40,21,g);
+                paintBambooStick(40,39,g);
                 g.setColor(red);
-                paintBambooStick(48,3,g);
+                paintBambooStick(40,3,g);
                 break;
             case 8:
                 g.setColor(green);
-                paintBambooStick(31,3,g);
-                paintBambooStick(65,3,g);
-                paintBambooStick(48,3,g);
+                paintBambooStick(23,3,g);
+                paintBambooStick(57,3,g);
+                paintBambooStick(40,3,g);
                 g.setColor(red);
-                paintBambooStick(40,21,g);
-                paintBambooStick(57,21,g);
+                paintBambooStick(32,21,g);
+                paintBambooStick(49,21,g);
                 g.setColor(blue);
-                paintBambooStick(31,39,g);
-                paintBambooStick(65,39,g);
-                paintBambooStick(48,39,g);
+                paintBambooStick(23,39,g);
+                paintBambooStick(57,39,g);
+                paintBambooStick(40,39,g);
                 break;
             case 9:
                 g.setColor(red);
-                paintBambooStick(31,3,g);
-                paintBambooStick(31,21,g);
-                paintBambooStick(31,39,g);
+                paintBambooStick(23,3,g);
+                paintBambooStick(23,21,g);
+                paintBambooStick(23,39,g);
                 g.setColor(blue);
-                paintBambooStick(48,21,g);
-                paintBambooStick(48,39,g);
-                paintBambooStick(48,3,g);
+                paintBambooStick(40,21,g);
+                paintBambooStick(40,39,g);
+                paintBambooStick(40,3,g);
                 g.setColor(green);
-                paintBambooStick(65,3,g);
-                paintBambooStick(65,21,g);
-                paintBambooStick(65,39,g);
+                paintBambooStick(57,3,g);
+                paintBambooStick(57,21,g);
+                paintBambooStick(57,39,g);
                 break;
         }
     }

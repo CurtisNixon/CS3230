@@ -17,7 +17,7 @@ public class Bamboo1Tile extends PictureTile {
         ImageIcon icon = new ImageIcon("images/Sparrow.png");
         Image image = icon.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
         Image newImage = new ImageIcon(image).getImage();
-        g.drawImage(newImage, 27, 3, this);
+        g.drawImage(newImage, 21, 3, this);
         setToolTipText(toString());
     }
 

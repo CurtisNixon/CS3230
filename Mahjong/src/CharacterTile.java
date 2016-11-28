@@ -106,19 +106,19 @@ public class CharacterTile extends Tile{
         }
         g.setColor(new Color(0, 0, 0));
         g.setFont(new Font(g.getFont().getName(), Font.PLAIN, 20));
-        g.drawString(characterString, 42, 23);
+        g.drawString(characterString, 34, 23);
     }
 
     public void drawWan(Graphics g){
         g.setColor(new Color(247, 27, 7));
         g.setFont(new Font(g.getFont().getName(), Font.PLAIN, 20));
-        g.drawString("\u842C", 42, 48);
+        g.drawString("\u842C", 34, 48);
     }
 
     public void drawNumber(Graphics g){
         g.setColor(new Color(247, 27, 7));
         g.setFont(new Font(g.getFont().getName(), Font.PLAIN, 12));
-        g.drawString(Character.toString(symbol), 64, 15);
+        g.drawString(Character.toString(symbol), 56, 15);
     }
 
     public void drawLargeCharacter(Graphics g){
@@ -152,7 +152,7 @@ public class CharacterTile extends Tile{
             g.setColor(new Color(4, 158, 30));
         }
         g.setFont(new Font(g.getFont().getName(), Font.PLAIN, 40));
-        g.drawString(characterString, 30, 48);
+        g.drawString(characterString, 22, 48);
 
     }
 

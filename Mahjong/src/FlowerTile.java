@@ -24,7 +24,7 @@ public class FlowerTile extends PictureTile {
         //get the icon as an image and resize it
         Image image = icon.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
         Image newImage = new ImageIcon(image).getImage();
-        g.drawImage(newImage, 27, 3, null);
+        g.drawImage(newImage, 19, 3, null);
         setToolTipText(name);
     }
 
