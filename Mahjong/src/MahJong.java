@@ -8,7 +8,7 @@ public class MahJong extends JFrame {
     private JPanel mahJongBoard = new JPanel();
     public MahJong(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Mah Jong Tiles");
+        setTitle("Mah Jong by Curtis Nixon");
         setSize(1100,700);
         setLayout(null);
         add(new MahJongBoard());
