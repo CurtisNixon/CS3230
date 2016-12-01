@@ -14,7 +14,7 @@ public class Bamboo1Tile extends PictureTile {
 
     public void paintBamboo1Tile(Graphics g){
         //get the icon as an image and resize it
-        ImageIcon icon = new ImageIcon("images/Sparrow.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("images/Sparrow.png"));
         Image image = icon.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
         Image newImage = new ImageIcon(image).getImage();
         g.drawImage(newImage, 21, 3, this);

@@ -13,13 +13,13 @@ public class FlowerTile extends PictureTile {
         String name = super.toString();
         ImageIcon icon = null;
         if(name.equals("Chrysanthemum")){
-            icon = new ImageIcon("images/Chrysanthemum.png");
+            icon = new ImageIcon(getClass().getResource("images/Chrysanthemum.png"));
         }else if(name.equals("Orchid")){
-            icon = new ImageIcon("images/Orchid.png");
+            icon = new ImageIcon(getClass().getResource("images/Orchid.png"));
         }else if(name.equals("Plum")){
-            icon = new ImageIcon("images/Plum.png");
+            icon = new ImageIcon(getClass().getResource("images/Plum.png"));
         }else if(name.equals("Bamboo")){
-            icon = new ImageIcon("images/Bamboo.png");
+            icon = new ImageIcon(getClass().getResource("images/Bamboo.png"));
         }
         //get the icon as an image and resize it
         Image image = icon.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);

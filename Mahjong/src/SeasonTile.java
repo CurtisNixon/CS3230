@@ -18,13 +18,13 @@ public class SeasonTile extends PictureTile {
         String name = super.toString();
         ImageIcon icon = null;
         if(name.equals("Spring")){
-            icon = new ImageIcon("images/Spring.png");
+            icon = new ImageIcon(getClass().getResource("images/Spring.png"));
         }else if(name.equals("Summer")){
-            icon = new ImageIcon("images/Summer.png");
+            icon = new ImageIcon(getClass().getResource("images/Summer.png"));
         }else if(name.equals("Fall")){
-            icon = new ImageIcon("images/Fall.png");
+            icon = new ImageIcon(getClass().getResource("images/Fall.png"));
         }else if(name.equals("Winter")){
-            icon = new ImageIcon("images/Winter.png");
+            icon = new ImageIcon(getClass().getResource("images/Winter.png"));
         }
         //get the icon as an image and resize it
         Image image = icon.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
