@@ -13,9 +13,7 @@ public class MahJongBoard extends JPanel implements MouseListener {
 
     public MahJongBoard(){
         setLayout(null);
-        //TODO set background image
-        //Image image = new
-        //setBackground(Color.black);
+        setBackground(Color.ORANGE);
         setLocation(0,0);
         setSize(1100,700);
         MahJongModel  model = new MahJongModel();
@@ -64,7 +62,7 @@ public class MahJongBoard extends JPanel implements MouseListener {
         setVisible(true);
     }
     public void mouseClicked(MouseEvent e){
-        System.out.println(e.getSource());
+        //System.out.println(e.getSource());
         remove((Tile)e.getSource());
         revalidate();
         repaint();
@@ -73,6 +71,15 @@ public class MahJongBoard extends JPanel implements MouseListener {
     public void mouseReleased(MouseEvent e){}
     public void mouseEntered(MouseEvent e){}
     public void mousePressed(MouseEvent e){}
+
+    ImageIcon img = new ImageIcon(getClass().getResource("images/dragon_bg.png"));
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        Image image = img.getImage().getScaledInstance(1100,700,Image.SCALE_SMOOTH);
+        g.drawImage(new ImageIcon(image).getImage(),0,0,this);
+
+    }
+
 
 
 }
