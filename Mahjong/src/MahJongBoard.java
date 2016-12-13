@@ -10,13 +10,14 @@ public class MahJongBoard extends JPanel implements MouseListener {
     private static int yBounds = 73;
     private static int xLength = 56;
     private static int yLength = 56;
+    private MahJongModel model;
 
     public MahJongBoard(){
         setLayout(null);
         setBackground(Color.ORANGE);
         setLocation(0,0);
         setSize(1100,700);
-        MahJongModel  model = new MahJongModel();
+        model = new MahJongModel();
 
         //top tile
         Tile t = model.topTile;
@@ -30,13 +31,13 @@ public class MahJongBoard extends JPanel implements MouseListener {
         t.setBounds(64,285,xBounds, yBounds);
         add(t);
 
-        int xPosition = 200;
-        int yPosition = 10;
+        int xPosition = 144;
+        int yPosition = -42;
         for(int z = 4; z >= 0; z--) {
             xPosition = xPosition - 16;
             yPosition = yPosition + 16;
-            for (int i = 8; i >= 0; i--) {
-                for (int j = 0; j < 12; j++) {
+            for (int i = 9; i >= 0; i--) {
+                for (int j = 1; j < 13; j++) {
                     if (model.tiles[i][j][z] != null) {
                         t = model.tiles[i][j][z];
                         t.setBounds(xPosition + j * xLength, yPosition + i * yLength, xBounds, yBounds);
@@ -62,8 +63,88 @@ public class MahJongBoard extends JPanel implements MouseListener {
         setVisible(true);
     }
     public void mouseClicked(MouseEvent e){
-        //System.out.println(e.getSource());
-        remove((Tile)e.getSource());
+        System.out.println(e.getSource() + " was clicked");
+        Tile clickedTile = (Tile)e.getSource();
+        int tileX = clickedTile.xPosition;
+        int tileY = clickedTile.yPosition;
+        int tileZ = clickedTile.zPosition;
+        //check if it is a special case tile
+        if(clickedTile.equals(model.topTile)) {
+            System.out.println("toptile");
+
+            //TODO
+            remove((Tile) e.getSource());
+            model.topTileRemoved = true;
+        }else if(clickedTile.equals(model.leftMostTile)){
+            System.out.println("left special tile");
+
+            remove((Tile) e.getSource());
+            //TODO add to array
+            model.leftMostTileRemoved = true;
+        }else if(clickedTile.equals(model.rightTileLeft)){
+            System.out.println("right tile left");
+            System.out.println("right tile removed: " + model.rightTileRightRemoved);
+            if(model.rightTileRightRemoved){
+                //TODO
+                remove((Tile) e.getSource());
+                model.rightTileLeftRemoved = true;
+            }
+        }else if(clickedTile.equals(model.rightTileRight)){
+            System.out.println("right tile right");
+            //TODO
+            remove((Tile) e.getSource());
+            model.rightTileRightRemoved = true;
+        }
+        //adjacent to left tile
+        else if((tileX == 4 && tileY == 1 && tileZ == 0) || (tileX == 5 && tileY == 1 && tileZ == 0)) {
+            System.out.println("adjacent to left tile");
+            System.out.println("left tile removed: " + model.leftMostTileRemoved);
+            if(model.leftMostTileRemoved){
+                System.out.println("removing tile.");
+                remove((Tile) e.getSource());
+                //TODO add to an array for tracking
+
+                //remove tile from tile model
+                model.tiles[tileX][tileY][tileZ] = null;
+            }
+        }
+        //adjacent to the right most left tile
+        else if((tileX == 4 && tileY == 12 && tileZ == 0) || (tileX == 5 && tileY == 12 && tileZ == 0)){
+            System.out.println("adjacent to right most left tile");
+            if (model.rightTileLeftRemoved) {
+                remove((Tile) e.getSource());
+                //TODO add to an array for tracking
+
+                //remove tile from tile model
+                model.tiles[tileX][tileY][tileZ] = null;
+            }
+        }
+        //below top tile
+        else if((tileX == 5 && tileY == 6 && tileZ == 3) || (tileX == 4 && tileY == 6 && tileZ == 3) || (tileX == 4 && tileY == 7 && tileZ == 3) || (tileX == 5 && tileY == 7 && tileZ == 3)){
+            if(model.topTileRemoved){
+                remove((Tile) e.getSource());
+                //TODO add to an array for tracking
+
+                //remove tile from tile model
+                model.tiles[tileX][tileY][tileZ] = null;
+            }
+        }
+        else{
+            //check left and right sides
+            System.out.println("tilex: " + tileX + " tiley: " + tileY + " tilez: " + tileZ);
+            if (model.tiles[tileX][(tileY - 1)][tileZ] == null || model.tiles[tileX][(tileY + 1)][tileZ] == null) {
+                System.out.println("passed left right check");
+                //check if a tile is on top of this tile
+                if (model.tiles[tileX][tileY][(tileZ + 1)] == null) {
+                    System.out.println("passed on top of check, removing.");
+                    remove((Tile) e.getSource());
+                    //TODO add to an array for tracking
+
+                    //remove tile from tile model
+                    model.tiles[tileX][tileY][tileZ] = null;
+                }
+            }
+        }
         revalidate();
         repaint();
     }

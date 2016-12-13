@@ -6,11 +6,16 @@ import java.util.Random;
  */
 public class MahJongModel{
     public ArrayList<Tile> tileList = new ArrayList<Tile>();
-    public Tile[][][] tiles = new Tile[9][12][5];
+    public Tile[][][] tiles = new Tile[12][14][5];
     public Tile leftMostTile;
+    public boolean leftMostTileRemoved = false;
     public Tile rightTileLeft;
+    public boolean rightTileLeftRemoved = false;
     public Tile rightTileRight;
+    public boolean rightTileRightRemoved = false;
     public Tile topTile;
+    public boolean topTileRemoved = false;
+
     public MahJongModel() {
 
         //add character tiles to array list
@@ -87,87 +92,175 @@ public class MahJongModel{
         //layer 1
         //row 1 tiles 1-12
         for(int i = 0; i < 12; i++) {
-            tiles[0][i][0] = tileList.remove(0);
+            tiles[1][i+1][0] = tileList.remove(0);
+            tiles[1][i+1][0].yPosition = i+1;
+            tiles[1][i+1][0].xPosition = 1;
+            tiles[1][i+1][0].zPosition = 0;
+            tiles[1][i+1][0].zOrder = 0;
         }
         //row2 tiles 13-20
         for(int i = 2; i < 10; i++) {
-            tiles[1][i][0] = tileList.remove(0);
+            tiles[2][i+1][0] = tileList.remove(0);
+            tiles[2][i+1][0].yPosition = i+1;
+            tiles[2][i+1][0].xPosition = 2;
+            tiles[2][i+1][0].zPosition = 0;
+            tiles[2][i+1][0].zOrder = 0;
         }
         //row 3 tiles 21-30
         for(int i = 1; i < 11; i++) {
-            tiles[2][i][0] = tileList.remove(0);
+            tiles[3][i+1][0] = tileList.remove(0);
+            tiles[3][i+1][0].yPosition = i+1;
+            tiles[3][i+1][0].xPosition = 3;
+            tiles[3][i+1][0].zPosition = 0;
+            tiles[3][i+1][0].zOrder = 0;
         }
         //row 4 tiles 31 - 42
         for(int i = 0; i < 12; i++) {
-            tiles[3][i][0] = tileList.remove(0);
+            tiles[4][i+1][0] = tileList.remove(0);
+            tiles[4][i+1][0].yPosition = i+1;
+            tiles[4][i+1][0].xPosition = 4;
+            tiles[4][i+1][0].zPosition = 0;
+            tiles[4][i+1][0].zOrder = 0;
         }
         //row 5 tiles 43-54
         for(int i = 0; i < 12; i++) {
-            tiles[4][i][0] = tileList.remove(0);
+            tiles[5][i+1][0] = tileList.remove(0);
+            tiles[5][i+1][0].yPosition = i+1;
+            tiles[5][i+1][0].xPosition = 5;
+            tiles[5][i+1][0].zPosition = 0;
+            tiles[5][i+1][0].zOrder = 0;
         }
         //row 6 tiles 55-64
         for(int i = 1; i < 11; i++) {
-            tiles[5][i][0] = tileList.remove(0);
+            tiles[6][i+1][0] = tileList.remove(0);
+            tiles[6][i+1][0].yPosition = i+1;
+            tiles[6][i+1][0].xPosition = 6;
+            tiles[6][i+1][0].zPosition = 0;
+            tiles[6][i+1][0].zOrder = 0;
         }
         //row 7 tiles 65-72
         for(int i = 2; i < 10; i++) {
-            tiles[6][i][0] = tileList.remove(0);
+            tiles[7][i+1][0] = tileList.remove(0);
+            tiles[7][i+1][0].yPosition = i+1;
+            tiles[7][i+1][0].xPosition = 7;
+            tiles[7][i+1][0].zPosition = 0;
+            tiles[7][i+1][0].zOrder = 0;
         }
         //row 8 tiles 73-84
         for(int i = 0; i < 12; i++) {
-            tiles[7][i][0] = tileList.remove(0);
+            tiles[8][i+1][0] = tileList.remove(0);
+            tiles[8][i+1][0].yPosition = i+1;
+            tiles[8][i+1][0].xPosition = 8;
+            tiles[8][i+1][0].zPosition = 0;
+            tiles[8][i+1][0].zOrder = 0;
         }
         //layer 2
         //row 1 tiles 85-90
         for(int i = 0; i < 6; i++){
-            tiles[1][i+3][1] = tileList.remove(0);
+            tiles[2][i+4][1] = tileList.remove(0);
+            tiles[2][i+4][1].yPosition = i+4;
+            tiles[2][i+4][1].xPosition = 2;
+            tiles[2][i+4][1].zPosition = 1;
+            tiles[2][i+4][1].zOrder = 1;
         }
         //row 2 tiles 91-96
         for(int i = 0; i < 6; i++){
-            tiles[2][i+3][1] = tileList.remove(0);
+            tiles[3][i+4][1] = tileList.remove(0);
+            tiles[3][i+4][1].yPosition = i+4;
+            tiles[3][i+4][1].xPosition = 3;
+            tiles[3][i+4][1].zPosition = 1;
+            tiles[3][i+4][1].zOrder = 1;
         }
         //row 3 tiles 97-102
         for(int i = 0; i < 6; i++){
-            tiles[3][i+3][1] = tileList.remove(0);
+            tiles[4][i+4][1] = tileList.remove(0);
+            tiles[4][i+4][1].yPosition = i+4;
+            tiles[4][i+4][1].xPosition = 4;
+            tiles[4][i+4][1].zPosition = 1;
+            tiles[4][i+4][1].zOrder = 1;
         }
         //row 4 tiles 103-108
         for(int i = 0; i < 6; i++){
-            tiles[4][i+3][1] = tileList.remove(0);
+            tiles[5][i+4][1] = tileList.remove(0);
+            tiles[5][i+4][1].yPosition = i+4;
+            tiles[5][i+4][1].xPosition = 5;
+            tiles[5][i+4][1].zPosition = 1;
+            tiles[5][i+4][1].zOrder = 1;
         }
         //row 5 tiles 109-114
         for(int i = 0; i < 6; i++){
-            tiles[5][i+3][1] = tileList.remove(0);
+            tiles[6][i+4][1] = tileList.remove(0);
+            tiles[6][i+4][1].yPosition = i+4;
+            tiles[6][i+4][1].xPosition = 6;
+            tiles[6][i+4][1].zPosition = 1;
+            tiles[6][i+4][1].zOrder = 1;
         }
         //row 6 tiles 115-120
         for(int i = 0; i < 6; i++){
-            tiles[6][i+3][1] = tileList.remove(0);
+            tiles[7][i+4][1] = tileList.remove(0);
+            tiles[7][i+4][1].yPosition = i+4;
+            tiles[7][i+4][1].xPosition = 7;
+            tiles[7][i+4][1].zPosition = 1;
+            tiles[7][i+4][1].zOrder = 1;
         }
 
         //layer 3
         //row 1 tiles 121-124
         for(int i = 0; i < 4; i++){
-            tiles[2][i+4][2] = tileList.remove(0);
+            tiles[3][i+5][2] = tileList.remove(0);
+            tiles[3][i+5][2].yPosition = i+5;
+            tiles[3][i+5][2].xPosition = 3;
+            tiles[3][i+5][2].zPosition = 2;
+            tiles[3][i+5][2].zOrder = 2;
         }
         //row 2 tiles 125-128
         for(int i = 0; i < 4; i++){
-            tiles[3][i+4][2] = tileList.remove(0);
+            tiles[4][i+5][2] = tileList.remove(0);
+            tiles[4][i+5][2].yPosition = i+5;
+            tiles[4][i+5][2].xPosition = 4;
+            tiles[4][i+5][2].zPosition = 2;
+            tiles[4][i+5][2].zOrder = 2;
         }
         //row 3 tiles 129-132
         for(int i = 0; i < 4; i++){
-            tiles[4][i+4][2] = tileList.remove(0);
+            tiles[5][i+5][2] = tileList.remove(0);
+            tiles[5][i+5][2].yPosition = i+5;
+            tiles[5][i+5][2].xPosition = 5;
+            tiles[5][i+5][2].zPosition = 2;
+            tiles[5][i+5][2].zOrder = 2;
         }
         //row 4 tiles 133-136
         for(int i = 0; i < 4; i++){
-            tiles[5][i+4][2] = tileList.remove(0);
+            tiles[6][i+5][2] = tileList.remove(0);
+            tiles[6][i+5][2].yPosition = i+5;
+            tiles[6][i+5][2].xPosition = 6;
+            tiles[6][i+5][2].zPosition = 2;
+            tiles[6][i+5][2].zOrder = 2;
         }
 
         //layer 4
         //row 1 tiles 137 and 138
-        tiles[3][5][3] = tileList.remove(0);
-        tiles[3][6][3] = tileList.remove(0);
-        //row 2 tiles 139 and 140
-        tiles[4][5][3] = tileList.remove(0);
         tiles[4][6][3] = tileList.remove(0);
+        tiles[4][6][3].yPosition = 6;
+        tiles[4][6][3].xPosition = 4;
+        tiles[4][6][3].zPosition = 3;
+        tiles[4][6][3].zOrder = 3;
+        tiles[4][7][3] = tileList.remove(0);
+        tiles[4][7][3].yPosition = 7;
+        tiles[4][7][3].xPosition = 4;
+        tiles[4][7][3].zPosition = 3;
+        tiles[4][7][3].zOrder = 3;
+        //row 2 tiles 139 and 140
+        tiles[5][6][3] = tileList.remove(0);
+        tiles[5][6][3].yPosition = 6;
+        tiles[5][6][3].xPosition = 5;
+        tiles[5][6][3].zPosition = 3;
+        tiles[5][6][3].zOrder = 3;
+        tiles[5][7][3] = tileList.remove(0);
+        tiles[5][7][3].yPosition = 7;
+        tiles[5][7][3].xPosition = 5;
+        tiles[5][7][3].zPosition = 3;
+        tiles[5][7][3].zOrder = 3;
         //special case tiles
         leftMostTile = tileList.remove(0);
         rightTileLeft = tileList.remove(0);
@@ -175,8 +268,6 @@ public class MahJongModel{
         topTile = tileList.remove(0);
 
     }
-
-    //public void positionTile(){}
 
     public static void main(String[] args){
         MahJongModel model = new MahJongModel();

@@ -8,6 +8,10 @@ public class Tile extends JPanel {
     public boolean matches(Tile other){
         return this.getClass() == other.getClass();
     }
+    public int xPosition;
+    public int yPosition;
+    public int zPosition;
+    public int zOrder;
     public Tile(){
         setPreferredSize(new Dimension(73,72));
         setOpaque(false);
@@ -72,6 +76,22 @@ public class Tile extends JPanel {
         super.paintComponent(g);
         paintTile(g);
 
+    }
+
+    public void setXPosition(int x){
+        xPosition = x;
+    }
+
+    public void setYPosition(int y){
+        yPosition = y;
+    }
+
+    public void setZPosition(int z){
+        zPosition = z;
+    }
+
+    public void setZOrder(int z){
+        zOrder = z;
     }
 
     public static void main(String[] args)
