@@ -22,13 +22,16 @@ public class MahJongBoard extends JPanel implements MouseListener {
     private int secondClickedTileZ;
     private int secondClickedTileZOrder;
 
-    public MahJongBoard(){
+    public MahJongBoard(long randomSeed){
         setLayout(null);
         setBackground(Color.ORANGE);
         setLocation(0,0);
         setSize(1100,700);
-        model = new MahJongModel();
-
+        model = new MahJongModel(randomSeed);
+        JLabel label = new JLabel();
+        label.setBounds(500,25,500,25);
+        add(label);
+        label.setText("Numbered Game: " + (randomSeed));
         //top tile
         Tile t = model.topTile;
         t.addMouseListener(this);

@@ -2,18 +2,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Curtis on 11/25/2016.
  */
 public class MahJong extends JFrame {
     private MahJongBoard board;
+    private long randomSeed;
     public MahJong(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Mah Jong by Curtis Nixon");
         setSize(1100,700);
         setLayout(null);
-        board = new MahJongBoard();
+        randomSeed = ThreadLocalRandom.current().nextInt(1,100000);
+        board = new MahJongBoard(randomSeed);
         add(board);
         makeMenu();
         setVisible(true);
@@ -110,23 +114,48 @@ public class MahJong extends JFrame {
     }
 
     public void play(){
-        //TODO JOptionPane for confirmation or cancel
         Object[] options = {"Yes","No"};
         int n = JOptionPane.showOptionDialog(this,"Are you sure you want to start a new game?","New game",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, options,options[1]);
         if(n == JOptionPane.YES_OPTION) {
+            randomSeed = ThreadLocalRandom.current().nextInt(1,100000);
             remove(board);
-            board = new MahJongBoard();
+            board = new MahJongBoard(randomSeed);
             add(board);
             repaint();
         }
     }
 
     public void restart(){
-        //TODO restart the same game
+        Object[] options = {"Yes","No"};
+        int n = JOptionPane.showOptionDialog(this,"Are you sure you want to restart the current game?","Restart game",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, options,options[1]);
+        if(n == JOptionPane.YES_OPTION) {
+            remove(board);
+            board = new MahJongBoard(randomSeed);
+            add(board);
+            repaint();
+        }
     }
 
     public void numbered(){
-        //TODO load a numbered game
+        String string = JOptionPane.showInputDialog(this, "Enter a number between 1 and 100,000.","Numbered Game", JOptionPane.PLAIN_MESSAGE);
+        long inputNumber = -1;
+        if(string.matches("[0-9]+") && string.length() > 0 && string.length() < 100000){
+            inputNumber = Long.parseLong(string);
+        }else{
+            JOptionPane.showMessageDialog(this, "Invalid input. Enter a number between 1 and 100,000.", "Error", JOptionPane.ERROR_MESSAGE);
+            numbered();
+        }
+
+        if(inputNumber < 100000 && inputNumber > 0) {
+            remove(board);
+            randomSeed = inputNumber;
+            board = new MahJongBoard(inputNumber);
+            add(board);
+            repaint();
+        }else{
+            JOptionPane.showMessageDialog(this, "Invalid input. Enter a number between 1 and 100,000.", "Error", JOptionPane.ERROR_MESSAGE);
+            numbered();
+        }
     }
 
     public void sound(){

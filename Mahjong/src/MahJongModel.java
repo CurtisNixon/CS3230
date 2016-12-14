@@ -16,7 +16,7 @@ public class MahJongModel{
     public Tile topTile;
     public boolean topTileRemoved = false;
 
-    public MahJongModel() {
+    public MahJongModel(long randomSeed) {
 
         //add character tiles to array list
         for (int i = 1; i < 16; i++) {
@@ -80,7 +80,7 @@ public class MahJongModel{
         tileList.add(new SeasonTile("Winter"));
 
         ArrayList<Tile> randomizedList = new ArrayList<Tile>();
-        Random  random = new Random();
+        Random  random = new Random(randomSeed);
         while(tileList.size() > 0){
             Tile t = tileList.remove(random.nextInt(tileList.size()));
             randomizedList.add(t);
@@ -270,7 +270,7 @@ public class MahJongModel{
     }
 
     public static void main(String[] args){
-        MahJongModel model = new MahJongModel();
+        MahJongModel model = new MahJongModel(12341234);
         System.out.println("tilelist size: " + model.tileList.size());
         //tileList
         for(int i = 0; i < model.tileList.size(); i ++){
