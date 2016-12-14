@@ -111,10 +111,14 @@ public class MahJong extends JFrame {
 
     public void play(){
         //TODO JOptionPane for confirmation or cancel
-        remove(board);
-        board = new MahJongBoard();
-        add(board);
-        repaint();
+        Object[] options = {"Yes","No"};
+        int n = JOptionPane.showOptionDialog(this,"Are you sure you want to start a new game?","New game",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, options,options[1]);
+        if(n == JOptionPane.YES_OPTION) {
+            remove(board);
+            board = new MahJongBoard();
+            add(board);
+            repaint();
+        }
     }
 
     public void restart(){
