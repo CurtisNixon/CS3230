@@ -8,6 +8,8 @@ public class Tile extends JPanel {
     public boolean matches(Tile other){
         return this.getClass() == other.getClass();
     }
+    public int xBound;
+    public int yBound;
     public int xPosition;
     public int yPosition;
     public int zPosition;

@@ -14,7 +14,7 @@ public class MahJong extends JFrame {
     public MahJong(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Mah Jong by Curtis Nixon");
-        setSize(1100,700);
+        setSize(1100,740);
         setLayout(null);
         randomSeed = ThreadLocalRandom.current().nextInt(1,100000);
         board = new MahJongBoard(randomSeed);
@@ -164,6 +164,10 @@ public class MahJong extends JFrame {
 
     public void undo(){
         //TODO undo last move
+        board.undo();
+        board.undo();
+        repaint();
+
     }
 
     public void rules(){

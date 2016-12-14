@@ -1,6 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.Stack;
+
 /**
  * Created by Curtis on 11/25/2016.
  */
@@ -21,6 +23,7 @@ public class MahJongBoard extends JPanel implements MouseListener {
     private int secondClickedTileY;
     private int secondClickedTileZ;
     private int secondClickedTileZOrder;
+    public static Stack<Tile> stack;
 
     public MahJongBoard(long randomSeed){
         setLayout(null);
@@ -29,19 +32,25 @@ public class MahJongBoard extends JPanel implements MouseListener {
         setSize(1100,700);
         model = new MahJongModel(randomSeed);
         JLabel label = new JLabel();
-        label.setBounds(500,25,500,25);
+        label.setBounds(450,25,500,25);
         add(label);
-        label.setText("Numbered Game: " + (randomSeed));
+        label.setText("Numbered Game: " + randomSeed);
+
+        stack = new Stack<Tile>();
         //top tile
         Tile t = model.topTile;
         t.addMouseListener(this);
         t.setBounds(490,225, xBounds, yBounds);
+        t.xBound = 490;
+        t.yBound = 225;
         add(t);
 
         //left most tile
         t = model.leftMostTile;
         t.addMouseListener(this);
         t.setBounds(64,285,xBounds, yBounds);
+        t.xBound = 64;
+        t.yBound = 285;
         add(t);
 
         int xPosition = 144;
@@ -54,6 +63,8 @@ public class MahJongBoard extends JPanel implements MouseListener {
                     if (model.tiles[i][j][z] != null) {
                         t = model.tiles[i][j][z];
                         t.setBounds(xPosition + j * xLength, yPosition + i * yLength, xBounds, yBounds);
+                        t.xBound = xPosition + j * xLength;
+                        t.yBound = yPosition + i * yLength;
                         t.addMouseListener(this);
                         add(t);
                     }
@@ -65,11 +76,15 @@ public class MahJongBoard extends JPanel implements MouseListener {
         t = model.rightTileLeft;
         t.addMouseListener(this);
         t.setBounds(792, 285, xBounds, yBounds);
+        t.xBound = 792;
+        t.yBound = 285;
         add(t);
 
         t = model.rightTileRight;
         t.addMouseListener(this);
         t.setBounds(792 + xLength, 285, xBounds, yBounds);
+        t.xBound = 792 + xLength;
+        t.yBound = 285;
         add(t);
 
 
@@ -267,8 +282,18 @@ public class MahJongBoard extends JPanel implements MouseListener {
                 }
             }
         }
+        stack.push(t);
         //remove the tile from the JPanel
         remove(t);
+    }
+
+    public void undo(){
+        Tile t = stack.pop();
+        model.tiles[t.xPosition][t.yPosition][t.zPosition] = t;
+        t.setBounds(t.xBound,t.yBound,xBounds,yBounds);
+        //TODO Zorder
+        add(t);
+        repaint();
     }
 
     ImageIcon img = new ImageIcon(getClass().getResource("images/dragon_bg.png"));
