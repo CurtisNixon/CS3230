@@ -143,7 +143,7 @@ public class MahJong extends JFrame {
             inputNumber = Long.parseLong(string);
         }else{
             JOptionPane.showMessageDialog(this, "Invalid input. Enter a number between 1 and 100,000.", "Error", JOptionPane.ERROR_MESSAGE);
-            numbered();
+            return;
         }
 
         if(inputNumber < 100000 && inputNumber > 0) {
@@ -154,7 +154,7 @@ public class MahJong extends JFrame {
             repaint();
         }else{
             JOptionPane.showMessageDialog(this, "Invalid input. Enter a number between 1 and 100,000.", "Error", JOptionPane.ERROR_MESSAGE);
-            numbered();
+            return;
         }
     }
 
