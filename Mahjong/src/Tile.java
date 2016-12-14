@@ -12,6 +12,7 @@ public class Tile extends JPanel {
     public int yPosition;
     public int zPosition;
     public int zOrder;
+    public boolean highlightTile = false;
     public Tile(){
         setPreferredSize(new Dimension(73,72));
         setOpaque(false);
@@ -37,7 +38,7 @@ public class Tile extends JPanel {
     static int[] yTile = new int[] {0,0,56,56};
     static GradientPaint tileWhite = new GradientPaint(24,32,white,56,0,ivory);
 
-    public static void paintTile(Graphics2D g){
+    public void paintTile(Graphics2D g){
 
         //left side green
         g.setPaint(leftGreen);
@@ -68,6 +69,10 @@ public class Tile extends JPanel {
         g.fillPolygon(xTile, yTile, 4);
         g.setColor(black);
         g.drawPolygon(xTile, yTile, 4);
+        if(highlightTile){
+            g.setPaint(green);
+            g.fillPolygon(xTile, yTile, 4);
+        }
     }
 
     public void paintComponent(Graphics g2){
