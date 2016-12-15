@@ -17,12 +17,10 @@ public class MahJongBoard extends JPanel implements MouseListener {
     private int firstClickedTileX;
     private int firstClickedTileY;
     private int firstClickedTileZ;
-    private int firstClickedTileZOrder;
     private Tile secondClickedTile = null;
     private int secondClickedTileX;
     private int secondClickedTileY;
     private int secondClickedTileZ;
-    private int secondClickedTileZOrder;
     public static Stack<Tile> stack;
 
     public MahJongBoard(long randomSeed){
@@ -43,6 +41,7 @@ public class MahJongBoard extends JPanel implements MouseListener {
         t.setBounds(490,225, xBounds, yBounds);
         t.xBound = 490;
         t.yBound = 225;
+        setComponentZOrder(t, t.zOrder);
         add(t);
 
         //left most tile
@@ -65,6 +64,7 @@ public class MahJongBoard extends JPanel implements MouseListener {
                         t.setBounds(xPosition + j * xLength, yPosition + i * yLength, xBounds, yBounds);
                         t.xBound = xPosition + j * xLength;
                         t.yBound = yPosition + i * yLength;
+                        setComponentZOrder(t, t.getZOrder());
                         t.addMouseListener(this);
                         add(t);
                     }
@@ -92,37 +92,31 @@ public class MahJongBoard extends JPanel implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent e){
-        System.out.println(e.getSource() + " was clicked");
         Tile clickedTile = (Tile)e.getSource();
         int tileX = clickedTile.xPosition;
         int tileY = clickedTile.yPosition;
         int tileZ = clickedTile.zPosition;
+        clickedTile.setZOrder(getComponentZOrder(clickedTile));
         boolean tileIsOpen = tileIsOpen(clickedTile, tileX, tileY, tileZ);
         //valid click on an open tile
         if(tileIsOpen){
             if(firstClickedTile == null){
-                System.out.println("set first click: " + clickedTile);
                 clickedTile.highlightTile = true;
                 firstClickedTile = clickedTile;
                 firstClickedTileX = tileX;
                 firstClickedTileY = tileY;
                 firstClickedTileZ = tileZ;
-                //firstClickedTileZOrder = tileZOrder;
             }else if(secondClickedTile == null){
-                System.out.println("set second click: " + clickedTile);
                 clickedTile.highlightTile = true;
                 repaint();
                 secondClickedTile = clickedTile;
                 secondClickedTileX = tileX;
                 secondClickedTileY = tileY;
                 secondClickedTileZ = tileZ;
-//                secondClickedTileZOrder = tileZOrder;
             }
             if(firstClickedTile != null && secondClickedTile != null){
                 if(firstClickedTile != secondClickedTile) {
                     if (firstClickedTile.matches(secondClickedTile)) {
-                        System.out.println("remove: " + firstClickedTile);
-                        System.out.println("remove: " + secondClickedTile);
                         removeTile(firstClickedTile, firstClickedTileX, firstClickedTileY, firstClickedTileZ);
                         removeTile(secondClickedTile, secondClickedTileX, secondClickedTileY, secondClickedTileZ);
                         revalidate();
@@ -157,34 +151,24 @@ public class MahJongBoard extends JPanel implements MouseListener {
     public boolean tileIsOpen(Tile clickedTile, int tileX, int tileY, int tileZ){
         //check if it is a special case tile
         if(clickedTile.equals(model.topTile)) {
-            System.out.println("toptile");
             return true;
         }else if(clickedTile.equals(model.leftMostTile)){
-            System.out.println("left special tile");
             return true;
         }else if(clickedTile.equals(model.rightTileLeft)){
-            System.out.println("right tile left");
-            System.out.println("right tile removed: " + model.rightTileRightRemoved);
             if(model.rightTileRightRemoved){
-                //TODO
                 return true;
             }
         }else if(clickedTile.equals(model.rightTileRight)){
-            System.out.println("right tile right");
             return true;
         }
         //adjacent to left tile
         else if((tileX == 4 && tileY == 1 && tileZ == 0) || (tileX == 5 && tileY == 1 && tileZ == 0)) {
-            System.out.println("adjacent to left tile");
-            System.out.println("left tile removed: " + model.leftMostTileRemoved);
             if(model.leftMostTileRemoved){
-                System.out.println("removing tile.");
                 return true;
             }
         }
         //adjacent to the right most left tile
         else if((tileX == 4 && tileY == 12 && tileZ == 0) || (tileX == 5 && tileY == 12 && tileZ == 0)){
-            System.out.println("adjacent to right most left tile");
             if (model.rightTileLeftRemoved) {
                 return true;
             }
@@ -197,9 +181,6 @@ public class MahJongBoard extends JPanel implements MouseListener {
         }
         else{
             //check left and right sides
-            System.out.println("tilex: " + tileX + " tiley: " + tileY + " tilez: " + tileZ);
-            System.out.println("left tile: " + model.tiles[tileX][(tileY - 1)][tileZ]);
-            System.out.println("right tile: " + model.tiles[tileX][(tileY + 1)][tileZ]);
             if (model.tiles[tileX][(tileY - 1)][tileZ] == null || model.tiles[tileX][(tileY + 1)][tileZ] == null) {
                 //check if a tile is on top of this tile
                 if (model.tiles[tileX][tileY][(tileZ + 1)] == null) {
@@ -213,35 +194,19 @@ public class MahJongBoard extends JPanel implements MouseListener {
 
     public void removeTile(Tile t, int tileX, int tileY, int tileZ){
         if(t.equals(model.topTile)) {
-            System.out.println("remove toptile");
-
-            //TODO
             model.topTileRemoved = true;
         }else if(t.equals(model.leftMostTile)){
-            System.out.println("left special tile");
-
-            //TODO add to array
             model.leftMostTileRemoved = true;
         }else if(t.equals(model.rightTileLeft)){
-            System.out.println("right tile left");
-            System.out.println("right tile removed: " + model.rightTileRightRemoved);
             if(model.rightTileRightRemoved){
-                //TODO
                 model.rightTileLeftRemoved = true;
             }
         }else if(t.equals(model.rightTileRight)){
-            System.out.println("right tile right");
-            //TODO
             model.rightTileRightRemoved = true;
         }
         //adjacent to left tile
         else if((tileX == 4 && tileY == 1 && tileZ == 0) || (tileX == 5 && tileY == 1 && tileZ == 0)) {
-            System.out.println("adjacent to left tile");
-            System.out.println("left tile removed: " + model.leftMostTileRemoved);
             if(model.leftMostTileRemoved){
-                System.out.println("removing tile.");
-                //TODO add to an array for tracking
-
                 //remove tile from tile model
                 model.tiles[tileX][tileY][tileZ] = null;
             }
@@ -250,8 +215,6 @@ public class MahJongBoard extends JPanel implements MouseListener {
         else if((tileX == 4 && tileY == 12 && tileZ == 0) || (tileX == 5 && tileY == 12 && tileZ == 0)){
             System.out.println("adjacent to right most left tile");
             if (model.rightTileLeftRemoved) {
-                //TODO add to an array for tracking
-
                 //remove tile from tile model
                 model.tiles[tileX][tileY][tileZ] = null;
             }
@@ -259,29 +222,21 @@ public class MahJongBoard extends JPanel implements MouseListener {
         //below top tile
         else if((tileX == 5 && tileY == 6 && tileZ == 3) || (tileX == 4 && tileY == 6 && tileZ == 3) || (tileX == 4 && tileY == 7 && tileZ == 3) || (tileX == 5 && tileY == 7 && tileZ == 3)){
             if(model.topTileRemoved){
-                //TODO add to an array for tracking
-
                 //remove tile from tile model
                 model.tiles[tileX][tileY][tileZ] = null;
             }
         }
         else{
             //check left and right sides
-            System.out.println("tilex: " + tileX + " tiley: " + tileY + " tilez: " + tileZ);
-            System.out.println("left tile: " + model.tiles[tileX][(tileY - 1)][tileZ]);
-            System.out.println("right tile: " + model.tiles[tileX][(tileY + 1)][tileZ]);
             if (model.tiles[tileX][(tileY - 1)][tileZ] == null || model.tiles[tileX][(tileY + 1)][tileZ] == null) {
-                System.out.println("passed left right check");
                 //check if a tile is on top of this tile
                 if (model.tiles[tileX][tileY][(tileZ + 1)] == null) {
-                    System.out.println("passed on top of check, removing.");
-                    //TODO add to an array for tracking
-
                     //remove tile from tile model
                     model.tiles[tileX][tileY][tileZ] = null;
                 }
             }
         }
+        t.setZOrder(getComponentZOrder(t));
         stack.push(t);
         //remove the tile from the JPanel
         remove(t);
@@ -291,8 +246,8 @@ public class MahJongBoard extends JPanel implements MouseListener {
         Tile t = stack.pop();
         model.tiles[t.xPosition][t.yPosition][t.zPosition] = t;
         t.setBounds(t.xBound,t.yBound,xBounds,yBounds);
-        //TODO Zorder
-        add(t);
+        add(t, t.getZOrder());
+        revalidate();
         repaint();
     }
 

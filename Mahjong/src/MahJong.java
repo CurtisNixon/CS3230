@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -32,7 +33,7 @@ public class MahJong extends JFrame {
         gameMenu.setMnemonic('G');
         menuBar.add(gameMenu);
 
-        JMenuItem play = new JMenuItem("Play",'P');
+        JMenuItem play = new JMenuItem("Play new game",'P');
         play.setToolTipText("Start a new game");
         play.setAccelerator(KeyStroke.getKeyStroke("ctrl P"));
         gameMenu.add(play);
@@ -43,7 +44,7 @@ public class MahJong extends JFrame {
             }
         });
 
-        JMenuItem restart = new JMenuItem("Restart",'R');
+        JMenuItem restart = new JMenuItem("Restart Game",'R');
         restart.setToolTipText("Restart the current game");
         restart.setAccelerator(KeyStroke.getKeyStroke("ctrl R"));
         gameMenu.add(restart);
@@ -54,7 +55,7 @@ public class MahJong extends JFrame {
             }
         });
 
-        JMenuItem numbered = new JMenuItem("Numbered",'N');
+        JMenuItem numbered = new JMenuItem("Numbered Game",'N');
         numbered.setToolTipText("Play a numbered game");
         numbered.setAccelerator(KeyStroke.getKeyStroke("ctrl N"));
         gameMenu.add(numbered);
@@ -163,11 +164,14 @@ public class MahJong extends JFrame {
     }
 
     public void undo(){
-        //TODO undo last move
-        board.undo();
-        board.undo();
-        repaint();
-
+        if(MahJongBoard.stack.size() > 0){
+            board.undo();
+            board.undo();
+            revalidate();
+            repaint();
+        }else{
+            JOptionPane.showMessageDialog(this, "No moves to undo.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void rules(){

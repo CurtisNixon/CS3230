@@ -101,6 +101,23 @@ public class Tile extends JPanel {
         zOrder = z;
     }
 
+    public void setZOrder()
+    {
+        zOrder = getParent().getComponentZOrder(this);
+    }
+
+
+    public void resetZOrder()
+    {
+        getParent().setComponentZOrder(this, zOrder);
+    }
+
+
+    public int getZOrder()
+    {
+        return zOrder;
+    }
+
     public static void main(String[] args)
     {
         JFrame	frame = new JFrame();
