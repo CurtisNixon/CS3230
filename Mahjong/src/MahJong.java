@@ -1,9 +1,6 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
-import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -22,6 +19,25 @@ public class MahJong extends JFrame {
         add(board);
         makeMenu();
         setVisible(true);
+
+    }
+
+    public static void paintMatches(){
+        matchPane.addToUndo();
+        matchPane.revalidate();
+        matchPane.repaint();
+    }
+
+    public static MatchesPane matchPane = new MatchesPane();
+
+    private void showMatches(){
+        JFrame frame = new JFrame();
+
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.add(matchPane);
+        frame.setSize(400, 250);
+        frame.setTitle("Matched Tiles");
+        frame.setVisible(true);
 
     }
 
@@ -63,6 +79,17 @@ public class MahJong extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 numbered();
+            }
+        });
+
+        JMenuItem matches = new JMenuItem("Tiles Matched",'M');
+        matches.setToolTipText("Opens a window with all the matched tiles.");
+        matches.setAccelerator(KeyStroke.getKeyStroke("ctrl M"));
+        gameMenu.add(matches);
+        matches.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showMatches();
             }
         });
 
@@ -121,6 +148,7 @@ public class MahJong extends JFrame {
             randomSeed = ThreadLocalRandom.current().nextInt(1,100000);
             remove(board);
             board = new MahJongBoard(randomSeed);
+            matchPane.clearMatches();
             add(board);
             repaint();
         }
@@ -133,6 +161,7 @@ public class MahJong extends JFrame {
             remove(board);
             board = new MahJongBoard(randomSeed);
             add(board);
+            matchPane.clearMatches();
             repaint();
         }
     }
@@ -152,6 +181,7 @@ public class MahJong extends JFrame {
             randomSeed = inputNumber;
             board = new MahJongBoard(inputNumber);
             add(board);
+            matchPane.clearMatches();
             repaint();
         }else{
             JOptionPane.showMessageDialog(this, "Invalid input. Enter a number between 1 and 100,000.", "Error", JOptionPane.ERROR_MESSAGE);

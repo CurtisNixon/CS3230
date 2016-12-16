@@ -87,7 +87,6 @@ public class MahJongBoard extends JPanel implements MouseListener {
         t.yBound = 285;
         add(t);
 
-
         setVisible(true);
     }
 
@@ -121,6 +120,7 @@ public class MahJongBoard extends JPanel implements MouseListener {
                         removeTile(secondClickedTile, secondClickedTileX, secondClickedTileY, secondClickedTileZ);
                         revalidate();
                         repaint();
+                        MahJong.paintMatches();
                     }
                 }
                 firstClickedTile.highlightTile = false;
@@ -142,6 +142,9 @@ public class MahJongBoard extends JPanel implements MouseListener {
             secondClickedTile = null;
         }
         repaint();
+        if(model.tiles.length == 0){
+            JOptionPane.showMessageDialog(this, "You Win!", "Victory", JOptionPane.PLAIN_MESSAGE);
+        }
     }
     public void mouseExited(MouseEvent e){}
     public void mouseReleased(MouseEvent e){}
@@ -184,7 +187,6 @@ public class MahJongBoard extends JPanel implements MouseListener {
             if (model.tiles[tileX][(tileY - 1)][tileZ] == null || model.tiles[tileX][(tileY + 1)][tileZ] == null) {
                 //check if a tile is on top of this tile
                 if (model.tiles[tileX][tileY][(tileZ + 1)] == null) {
-                    System.out.println(clickedTile + " is open");
                     return true;
                 }
             }
@@ -213,7 +215,6 @@ public class MahJongBoard extends JPanel implements MouseListener {
         }
         //adjacent to the right most left tile
         else if((tileX == 4 && tileY == 12 && tileZ == 0) || (tileX == 5 && tileY == 12 && tileZ == 0)){
-            System.out.println("adjacent to right most left tile");
             if (model.rightTileLeftRemoved) {
                 //remove tile from tile model
                 model.tiles[tileX][tileY][tileZ] = null;
